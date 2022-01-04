@@ -1,0 +1,7 @@
+{
+  "parent": "magicstorage:block/unit_base_round",
+  "textures": {
+    "unit": "magicstorage:items/blocks/units/base",
+    "component": "magicstorage:items/blocks/storage_component"
+  }
+}

@@ -1,0 +1,9 @@
+itemTab.magicstorage:mod=MagicStorage
+
+item.magicstorage:shadow_diamond.name=Shadow Diamond
+
+tile.magicstorage:storage_heart.name=Storage Heart
+tile.magicstorage:storage_component.name=Storage Component
+
+tooltip.magicstorage:shadow_diamond=Traces of light still linger inside
+

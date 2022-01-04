@@ -1,0 +1,6 @@
+{
+  "parent": "magicstorage:block/base_round",
+  "textures": {
+    "all": "magicstorage:items/blocks/storage_component"
+  }
+}

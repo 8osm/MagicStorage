@@ -1,0 +1,16 @@
+[
+{
+  "modid": "magicstorage",
+  "name": "MagicStorage",
+  "description": "AE2-like storage for TerrariaCraft, original Terraria mod by blushiemagic",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["8osm3rka"],
+  "credits": "blushiemagic for creating the MagicStorage Terraria mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

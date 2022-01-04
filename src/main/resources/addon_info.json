@@ -1,0 +1,19 @@
+{
+  "id": "magicstorage",
+  "name": "MagicStorage",
+  "description": "AE2-like storage for TerrariaCraft, original Terraria mod by blushiemagic",
+  "authors": [
+    "8osm3rka"
+  ],
+  "website": "https://github.com/8osm/MagicStorage",
+  "issues_page": "https://github.com/8osm/MagicStorage/issues",
+  "icon_path": "assets/magicstorage/textures/icon.png",
+  "compatibility": {
+    "public_versions": [
+      "[12.5.29,12.6.)"
+    ],
+    "idev_versions": [
+      "[idev-,)"
+    ]
+  }
+}

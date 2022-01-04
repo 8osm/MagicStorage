@@ -1,0 +1,8 @@
+itemTab.magicstorage:mod=MagicStorage
+
+item.magicstorage:shadow_diamond.name=Теневой Алмаз
+
+tile.magicstorage:storage_heart.name=Сердце Хранилища
+tile.magicstorage:storage_component.name=Компонент Хранилиша
+
+tooltip.magicstorage:shadow_diamond=Внутри все ещё есть остатки света

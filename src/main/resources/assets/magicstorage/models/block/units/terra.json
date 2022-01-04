@@ -1,0 +1,7 @@
+{
+  "parent": "magicstorage:block/unit_round",
+  "textures": {
+    "unit": "magicstorage:items/blocks/units/terra",
+    "component": "magicstorage:items/blocks/storage_component"
+  }
+}
