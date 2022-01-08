@@ -1,10 +1,14 @@
 package tech.osm8.magicstorage.common.content.blocks.tile;
 
 import com.zeitheron.hammercore.tile.TileSyncable;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import org.zeith.terraria.common.container.ContainerChest;
+import tech.osm8.magicstorage.client.gui.ContainerTerminal;
+import tech.osm8.magicstorage.client.gui.GuiTerminal;
 import tech.osm8.magicstorage.common.StorageSystem;
 import tech.osm8.magicstorage.common.content.IStorageConductor;
 
@@ -35,8 +39,23 @@ public class StorageHeartTile extends TileSyncable implements IStorageConductor 
         return storageSystem;
     }
 
+    @Override
+    public Object getServerGuiElement(EntityPlayer player) {
+        return new ContainerTerminal(player);
+    }
+
+    @Override
+    public Object getClientGuiElement(EntityPlayer player) {
+        return new GuiTerminal((ContainerTerminal) this.getServerGuiElement(player));
+    }
+
     public void onHeartDestroy() {
         storageSystem.invalidate(world);
+    }
+
+    @Override
+    public boolean hasGui() {
+        return true;
     }
 
     public void defineSystem() {

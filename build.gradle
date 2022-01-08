@@ -41,10 +41,10 @@ repositories {
 dependencies {
     
 	// Adds Terraria Craft 12.5.29 (ALONGSIDE IT'S DEPENDENCIES) into workspace
-    deobfCompile "org.zeith.terraria:TerrariaCraft-1.12.2:12.5.29"
+    deobfCompile "org.zeith.terraria:TerrariaCraft-1.12.2:12.5.30"
 	
 	// Optionally, you may add Terraria Craft Recipe Viewer to make your life easier.
-	deobfCompile "org.zeith.terraria:TerrariaCraftRecipeViewer-1.12.2:5.1.6"
+	deobfCompile "org.zeith.terraria:TerrariaCraftRecipeViewer-1.12.2:5.2.7"
     
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..

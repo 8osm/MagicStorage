@@ -3,6 +3,8 @@ package tech.osm8.magicstorage.common.content.blocks.tile;
 import com.zeitheron.hammercore.tile.TileSyncable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.util.Constants;
 import org.zeith.terraria.client.gui.api.inventory.BigDummyInventory;
 import tech.osm8.magicstorage.common.StorageSystem;
 import tech.osm8.magicstorage.common.content.IStorageInventory;
@@ -10,6 +12,8 @@ import tech.osm8.magicstorage.common.content.IStorageInventory;
 public class BaseStorageTile extends TileSyncable implements IStorageInventory {
     public final BigDummyInventory items;
     public StorageSystem storageSystem;
+    private BlockPos heartPos;
+
 
     public BaseStorageTile(int slotCount) {
         this.items = new BigDummyInventory(slotCount);
@@ -17,11 +21,17 @@ public class BaseStorageTile extends TileSyncable implements IStorageInventory {
 
     @Override
     public void writeNBT(NBTTagCompound nbt) {
+        if (storageSystem != null) {
+            nbt.setLong("Heart", storageSystem.getHeartPos().toLong());
+        }
         items.writeToNBT(nbt);
     }
 
     @Override
     public void readNBT(NBTTagCompound nbt) {
+        if (nbt.hasKey("Heart", Constants.NBT.TAG_LONG)) {
+            this.heartPos = BlockPos.fromLong(nbt.getLong("Heart"));
+        }
         items.readFromNBT(nbt);
     }
 
@@ -31,8 +41,28 @@ public class BaseStorageTile extends TileSyncable implements IStorageInventory {
     }
 
     @Override
-    public boolean placeItemStack(ItemStack stack) {
-        return items.inventory.add(stack);
+    public ItemStack placeItemStack(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        int stackSize = stack.getMaxStackSize();
+        for (int i = 0; i < items.getSizeInventory(); i++) {
+            ItemStack slot = items.getStackInSlot(i);
+            if (slot.isEmpty()) {
+                items.setInventorySlotContents(i, stack);
+                return ItemStack.EMPTY;
+            } else if (slot.isItemEqual(stack) && slot.getCount() < stackSize) {
+                int toAdd = Math.min(stack.getCount(), stackSize - slot.getCount());
+                slot.grow(toAdd);
+                stack.shrink(toAdd);
+                if (stack.isEmpty()) {
+                    return ItemStack.EMPTY;
+                }
+            }
+        }
+
+        return stack;
     }
 
     @Override
@@ -42,6 +72,12 @@ public class BaseStorageTile extends TileSyncable implements IStorageInventory {
 
     @Override
     public StorageSystem getSystem() {
+        if (storageSystem == null && heartPos != null) {
+            TileSyncable tile = (TileSyncable) world.getTileEntity(heartPos);
+            if (tile instanceof StorageHeartTile) {
+                storageSystem = ((StorageHeartTile) tile).getSystem();
+            }
+        }
         return storageSystem;
     }
 

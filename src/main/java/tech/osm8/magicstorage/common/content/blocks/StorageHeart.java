@@ -2,13 +2,17 @@ package tech.osm8.magicstorage.common.content.blocks;
 
 import com.zeitheron.hammercore.api.ITileBlock;
 import com.zeitheron.hammercore.api.blocks.IBlockItemRegisterListener;
+import com.zeitheron.hammercore.internal.GuiManager;
 import com.zeitheron.hammercore.tile.TileSyncable;
+import com.zeitheron.hammercore.utils.base.Cast;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.zeith.terraria.api.items.IRareItem;
@@ -82,6 +86,12 @@ public class StorageHeart extends BlockBaseTC implements IBlockItemRegisterListe
         }
     }
 
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        GuiManager.openGui(playerIn, Cast.cast(worldIn.getTileEntity(pos), TileSyncable.class));
+        return true;
+    }
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {

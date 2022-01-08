@@ -44,10 +44,11 @@ public class StorageSystem {
 
     public void readNBT(NBTTagCompound nbt) {
         if (nbt != null) {
+            NBTTagCompound system = nbt.getCompoundTag("StorageSystem");
             NonNullList<BlockPos> newNodes = NonNullList.create();
             ArrayList<BlockPos> newRemoteAccesses = new ArrayList<>();
-            NBTTagList nbtTagList = nbt.getTagList("Nodes", Constants.NBT.TAG_LONG);
-            NBTTagList nbtTagList1 = nbt.getTagList("RemoteAccesses", Constants.NBT.TAG_LONG);
+            NBTTagList nbtTagList = system.getTagList("Nodes", Constants.NBT.TAG_LONG);
+            NBTTagList nbtTagList1 = system.getTagList("RemoteAccesses", Constants.NBT.TAG_LONG);
             for (int i = 0; i < nbtTagList.tagCount(); i++) {
                 newNodes.add(BlockPos.fromLong(((NBTPrimitive) nbtTagList.get(i)).getLong()));
             }

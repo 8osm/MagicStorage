@@ -7,7 +7,7 @@ public interface IStorageInventory extends IStorageConductor {
 
     BigDummyInventory getInventory();
 
-    boolean placeItemStack(ItemStack stack);
+    ItemStack placeItemStack(ItemStack stack);
 
     int getCapacity();
 }
