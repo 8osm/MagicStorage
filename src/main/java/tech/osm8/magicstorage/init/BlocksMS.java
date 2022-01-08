@@ -3,11 +3,13 @@ package tech.osm8.magicstorage.init;
 import tech.osm8.magicstorage.common.content.blocks.BaseStorageUnit;
 import tech.osm8.magicstorage.common.content.blocks.StorageComponent;
 import tech.osm8.magicstorage.common.content.blocks.StorageHeart;
+import tech.osm8.magicstorage.common.content.blocks.StorageRemoteAccess;
 import tech.osm8.magicstorage.common.content.blocks.tile.BaseStorageTile;
 
 public class BlocksMS {
     public static final StorageComponent STORAGE_COMPONENT = new StorageComponent("storage_component");
     public static final StorageHeart STORAGE_HEART = new StorageHeart("storage_heart");
+    public static final StorageRemoteAccess STORAGE_REMOTE_ACCESS = new StorageRemoteAccess("storage_remote_access");
     public static final BaseStorageUnit<BaseStorageTile.StorageUnitTile> STORAGE_UNIT_BASE = new BaseStorageUnit<>(BaseStorageTile.StorageUnitTile.class, "units/base");
     public static final BaseStorageUnit<BaseStorageTile.CursedStorageUnitTile> STORAGE_UNIT_CRIMTANE = new BaseStorageUnit<>(BaseStorageTile.CursedStorageUnitTile.class, "units/crimtane");
     public static final BaseStorageUnit<BaseStorageTile.CursedStorageUnitTile> STORAGE_UNIT_DEMONITE = new BaseStorageUnit<>(BaseStorageTile.CursedStorageUnitTile.class, "units/demonite");

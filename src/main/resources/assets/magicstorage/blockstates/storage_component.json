@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "magicstorage:storage_heart" }
+        "normal": { "model": "magicstorage:storage_component" }
     }
 }

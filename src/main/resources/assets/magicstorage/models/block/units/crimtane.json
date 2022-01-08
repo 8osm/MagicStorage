@@ -1,7 +1,7 @@
 {
   "parent": "magicstorage:block/unit_round",
   "textures": {
-    "unit": "magicstorage:items/blocks/units/crimtane",
-    "component": "magicstorage:items/blocks/storage_component"
+    "unit": "magicstorage:items/blocks/units/crimtane"
+
   }
 }

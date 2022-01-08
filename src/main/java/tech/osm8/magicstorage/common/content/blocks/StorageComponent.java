@@ -2,6 +2,7 @@ package tech.osm8.magicstorage.common.content.blocks;
 
 import com.zeitheron.hammercore.api.blocks.IBlockItemRegisterListener;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import org.zeith.terraria.api.blocks.BlockMaterial;
 import org.zeith.terraria.api.blocks.SoundTypesTC;
@@ -20,6 +21,17 @@ public class StorageComponent extends BlockBaseTC implements IBlockItemRegisterL
         minToolPower = 1;
         toolMineModifier = 0.01f;
         inTab(ItemTabsMS.MOD_TAB);
+    }
+
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
     }
 
     @Override
