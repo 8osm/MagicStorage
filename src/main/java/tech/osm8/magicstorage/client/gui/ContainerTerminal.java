@@ -10,11 +10,11 @@ public class ContainerTerminal extends ContainerNewInventory {
 
     public ContainerTerminal(EntityPlayer crafter) {
         super(crafter);
-        item = new BigDummyInventory(45);
-        for (int y = 0; y < 4; ++y) {
+        item = new BigDummyInventory(100);
+        for (int y = 0; y < 10; ++y) {
             for (int x = 0; x < 10; ++x) {
                 int id = x + y * 10;
-                this.addSlot((new ItemSlot(item, id, 37 + x * 15, 100 + y * 15, 11, 11, 14, 14)).setColor(8011583));
+                this.addSlot((new ItemSlot(item, id, 12 + x * 18, 100 + y * 18, 11, 11, 16, 16)).setColor(0x414499));
             }
         }
     }
