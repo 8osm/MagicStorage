@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Mouse;
 import org.zeith.terraria.client.gui.api.inventory.ItemSlot;
 import org.zeith.terraria.client.gui.terra.GuiNewInventory;
 
@@ -19,6 +20,12 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
     private int startY = 0;
     private int[] sortButtons = new int[4];
     private int[] filterButtons = new int[7];
+    private GuiScrollbar scrollbar;
+    private int scrollPos = 0;
+    private int rowsToRender = 10;
+    public static Float forceTabScrollAmount;
+    public static int scrollAmount;
+    public static int prevScrollAmount;
 
     @Override
     public void initGui() {
@@ -30,23 +37,22 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
         startX = Integer.MAX_VALUE;
         c.slots.forEach((s) -> {
             if (s.getInventory() == c.item) {
-                s.y += 24;
                 startX = Math.min(startX, s.x);
                 startY = Math.min(startY, s.y);
-                s.y += 32;
             }
         });
         int buttonID = 0;
         for (int x = 0; x < 4; x++) {
             sortButtons[x] = buttonID;
-            this.buttonList.add(new GuiButton(buttonID++, startX + x * 14, startY, 12, 12, "" + (buttonID - 1)));
+            this.buttonList.add(new GuiButton(buttonID++, startX + x * 14, startY - 32, 12, 12, "" + (buttonID - 1)));
         }
         for (int x = 0; x < 7; x++) {
             filterButtons[x] = buttonID;
-            this.buttonList.add(new GuiButton(buttonID++, startX + x * 14, startY + 16, 12, 12, "" +(buttonID - 1)));
+            this.buttonList.add(new GuiButton(buttonID++, startX + x * 14, startY - 16, 12, 12, "" + (buttonID - 1)));
         }
+        scrollbar = new GuiScrollbar();
         startX -= 4;
-        startY -= 4;
+        startY -= 36;
         this.initWidgets();
     }
 
@@ -74,17 +80,33 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
         });
     }
 
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+    protected void drawPanel(int height, int width, int x, int y) {
         GlStateManager.pushMatrix();
-//        drawString(Minecraft.getMinecraft().fontRenderer, "Test", xSize / 2, ySize / 2, 0xFFFFFF);
         UtilsFX.bindTexture(PANEL_TEX);
         GlStateManager.enableAlpha();
         GlStateManager.enableBlend();
-        RenderUtil.drawTexturedModalRect(startX, startY, 0, 0, 200, 256);
+        RenderUtil.drawTexturedModalRect(x, y, 0, 0, width - 4, height - 4);
+        RenderUtil.drawTexturedModalRect(x + width - 4, y, 200 - 4, 0, 4, height - 4);
+        RenderUtil.drawTexturedModalRect(x, y + height - 4, 0, 256 - 4, width - 4, 4);
+        RenderUtil.drawTexturedModalRect(x + width - 4, y + height - 4, 200 - 4, 256 - 4, 4, 4);
         GlStateManager.popMatrix();
+    }
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        drawPanel(240, 200, startX, startY);
+        scrollbar.renderScrollbar(startX + 186, startY + 32, 186, scrollPos);
         super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 
+    }
+
+    @Override
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        if (scrollbar.isMouseOnScrollbar(mouseX, mouseY) && !scrollbar.isMouseOnScroller(mouseX, mouseY)) {
+            scrollbar.setScrollerPosFromY(mouseY);
+            scrollPos = scrollbar.scrollerPos;
+        }
+        super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
     @Override
@@ -94,5 +116,13 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
         super.actionPerformed(button);
     }
 
-
+    @Override
+    public void updateScreen() {
+        prevScrollAmount = scrollAmount;
+        int wheel = Mouse.getDWheel();
+        if (wheel != 0) {
+            scrollAmount -= (float) (wheel / 120);
+        }
+        super.updateScreen();
+    }
 }

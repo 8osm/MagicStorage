@@ -14,7 +14,7 @@ public class ContainerTerminal extends ContainerNewInventory {
         for (int y = 0; y < 10; ++y) {
             for (int x = 0; x < 10; ++x) {
                 int id = x + y * 10;
-                this.addSlot((new ItemSlot(item, id, 12 + x * 18, 100 + y * 18, 11, 11, 16, 16)).setColor(0x414499));
+                this.addSlot((new ItemSlot(item, id, 12 + x * 18, 156 + y * 18, 11, 11, 16, 16)).setColor(0x414499));
             }
         }
     }
