@@ -1,0 +1,6 @@
+{
+  "parent": "magicstorage:block/base_terminal",
+  "textures": {
+    "all": "magicstorage:items/blocks/storage_heart"
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "magicstorage:units/crimtane" },
+        "facing=south": { "model": "magicstorage:units/crimtane", "y": 180 },
+        "facing=west":  { "model": "magicstorage:units/crimtane", "y": 270 },
+        "facing=east":  { "model": "magicstorage:units/crimtane", "y": 90 }
+    }
+}

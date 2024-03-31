@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "magicstorage:units/hellstone" },
+        "facing=south": { "model": "magicstorage:units/hellstone", "y": 180 },
+        "facing=west":  { "model": "magicstorage:units/hellstone", "y": 270 },
+        "facing=east":  { "model": "magicstorage:units/hellstone", "y": 90 }
+    }
+}

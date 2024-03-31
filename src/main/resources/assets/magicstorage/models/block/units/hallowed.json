@@ -1,0 +1,6 @@
+{
+  "parent": "magicstorage:block/unit_round",
+  "textures": {
+    "unit": "magicstorage:items/blocks/units/hallowed"
+  }
+}

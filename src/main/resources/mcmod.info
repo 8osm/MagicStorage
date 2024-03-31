@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder addon for Terraria Craft.",
+  "modid": "magicstorage",
+  "name": "MagicStorage",
+  "description": "AE2-like storage for TerrariaCraft, original Terraria mod by blushiemagic",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["8osm3rka"],
+  "credits": "blushiemagic for creating the MagicStorage Terraria mod",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

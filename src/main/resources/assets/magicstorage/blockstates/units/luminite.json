@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "magicstorage:units/luminite" },
+        "facing=south": { "model": "magicstorage:units/luminite", "y": 180 },
+        "facing=west":  { "model": "magicstorage:units/luminite", "y": 270 },
+        "facing=east":  { "model": "magicstorage:units/luminite", "y": 90 }
+    }
+}

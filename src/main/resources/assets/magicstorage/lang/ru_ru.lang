@@ -1,0 +1,8 @@
+itemTab.magicstorage:mod=MagicStorage
+
+item.magicstorage:shadow_diamond.name=Теневой алмаз
+
+tile.magicstorage:storage_heart.name=Сердце хранилища
+tile.magicstorage:storage_component.name=Компонент хранилиша
+
+tooltip.magicstorage:shadow_diamond=Следы света все еще мелькают внутри

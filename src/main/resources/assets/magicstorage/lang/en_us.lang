@@ -1,0 +1,20 @@
+itemTab.magicstorage:mod=MagicStorage
+
+itemGroup.magicstorage:units=Storage Units
+
+item.magicstorage:shadow_diamond.name=Shadow Diamond
+
+tile.magicstorage:storage_heart.name=Storage Heart
+tile.magicstorage:storage_component.name=Storage Component
+
+tile.magicstorage:units/base.name=Storage Unit
+tile.magicstorage:units/crimtane.name=Crimtane Storage Unit
+tile.magicstorage:units/demonite.name=Demonite Storage Unit
+tile.magicstorage:units/hellstone.name=Hellstone Storage Unit
+tile.magicstorage:units/hallowed.name=Hallowed Storage Unit
+tile.magicstorage:units/blue_chlorophyte.name=Blue Chlorophyte Storage Unit
+tile.magicstorage:units/luminite.name=Luminite Storage Unit
+tile.magicstorage:units/terra.name=Terra Storage Unit
+
+tooltip.magicstorage:shadow_diamond=Traces of light still linger inside
+

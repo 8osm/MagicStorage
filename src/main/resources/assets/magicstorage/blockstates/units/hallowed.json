@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "magicstorage:units/hallowed" },
+        "facing=south": { "model": "magicstorage:units/hallowed", "y": 180 },
+        "facing=west":  { "model": "magicstorage:units/hallowed", "y": 270 },
+        "facing=east":  { "model": "magicstorage:units/hallowed", "y": 90 }
+    }
+}
