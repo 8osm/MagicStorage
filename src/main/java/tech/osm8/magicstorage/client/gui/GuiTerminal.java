@@ -16,16 +16,18 @@ import java.io.IOException;
 public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
 
     private static final ResourceLocation PANEL_TEX = new ResourceLocation("magicstorage", "textures/gui/panel.png");
+
+
+    private final int height = 240;
+    private final int width = 200;
     private int startX = 8;
     private int startY = 0;
     private int[] sortButtons = new int[4];
     private int[] filterButtons = new int[7];
     private GuiScrollbar scrollbar;
-    private float scrollPos = 0F;
+    private int initialScrollPos = 0;
     private int rowsToRender = 10;
     public static Float forceTabScrollAmount;
-    public static int scrollAmount;
-    public static int prevScrollAmount;
 
     @Override
     public void initGui() {
@@ -50,9 +52,9 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
             filterButtons[x] = buttonID;
             this.buttonList.add(new GuiButton(buttonID++, startX + x * 14, startY - 16, 12, 12, "" + (buttonID - 1)));
         }
-        scrollbar = new GuiScrollbar();
         startX -= 4;
         startY -= 36;
+        scrollbar = new GuiScrollbar(startX + 186, startY + 25, 200, initialScrollPos, 160);
         this.initWidgets();
     }
 
@@ -80,7 +82,9 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
         });
     }
 
-    protected void drawPanel(int height, int width, int x, int y) {
+    protected void drawPanel() {
+        int x = startX;
+        int y = startY;
         GlStateManager.pushMatrix();
         UtilsFX.bindTexture(PANEL_TEX);
         GlStateManager.enableAlpha();
@@ -94,34 +98,51 @@ public class GuiTerminal extends GuiNewInventory<ContainerTerminal> {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        drawPanel(240, 200, startX, startY);
-        scrollbar.renderScrollbar(startX + 186, startY + 32, 186, scrollPos);
+        drawPanel();
+        scrollbar.renderScrollbar();
         super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-
     }
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        if (scrollbar.isMouseOnScrollbar(mouseX, mouseY) && !scrollbar.isMouseOnScroller(mouseX, mouseY)) {
-            scrollbar.setScrollerPosFromY(mouseY);
-            scrollPos = scrollbar.scrollPercent;
+        if (scrollbar.isMouseOnScrollbar(mouseX, mouseY)) {
+            scrollbar.setAnchoredToDetents(false);
+            scrollbar.setScrollerY(mouseY - scrollbar.scrollerHeight / 2);
         }
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
+
+    @Override
+    protected void mouseReleased(int mouseX, int mouseY, int state) {
+        if (!scrollbar.isAnchoredToDetents()) {
+            scrollbar.setAnchoredToDetents(false);
+            scrollbar.anchorToClosestDetent();
+        }
+        super.mouseReleased(mouseX, mouseY, state);
+    }
+
+
     @Override
     @ParametersAreNonnullByDefault
     protected void actionPerformed(GuiButton button) throws IOException {
-
         super.actionPerformed(button);
     }
 
     @Override
+    protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
+
+        if (scrollbar.isAnchoredToDetents()) {
+            scrollbar.setScrollerY(mouseY);
+        }
+        super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
+    }
+
+    @Override
     public void updateScreen() {
-        prevScrollAmount = scrollAmount;
         int wheel = Mouse.getDWheel();
         if (wheel != 0) {
-            scrollAmount -= (float) (wheel / 120);
+            scrollbar.setValue(scrollbar.getValue() - wheel / 120);
         }
         super.updateScreen();
     }

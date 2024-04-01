@@ -28,7 +28,7 @@ public class MagicStorage
     public static final String MODID = "magicstorage";
     public static final String NAME = "MagicStorage";
     public static final String VERSION = "@VERSION@";
-    private static Logger logger = LogManager.getLogger(MODID);
+    public static Logger logger = LogManager.getLogger(MODID);
 
     public MagicStorage() {
         // Used to add custom recipes
